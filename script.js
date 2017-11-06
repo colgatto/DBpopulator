@@ -52,6 +52,7 @@ var charGeneral=[
 	"stereo",
 	"usb"
 ];
+
 var charsetA="qazxswedcvfrtgbnhyujmkiolp";
 var charset0="0123456789";
 
@@ -150,6 +151,9 @@ function createT(){
 				case"null":
 					out+="null, ";
 				break;
+				case"autoinc":
+					out+="null, ";
+				break;
 			}
 		}
 		out=out.substr(0,out.length-2);
@@ -246,5 +250,6 @@ function stringifyTipe(n){
 		+"<option value='string'>String</option>"
 		+"<option value='date'>Date</option>"
 		+"<option value='null'>Null</option>"
+		+"<option value='autoinc'>Autoincrement</option>"
 		+"</select></td></tr>";
 }
