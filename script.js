@@ -1,58 +1,3 @@
-var nullPercentage=5;
-var decimalNumber=2;
-
-var charName=[
-	"David",
-	"Marco",
-	"Giulia",
-	"Giuseppe",
-	"Mario",
-	"Luigi",
-	"Susanna"
-];
-var charSurname=[
-	"DeAngelis",
-	"Rossi",
-	"Cruciani",
-	"Bianchi",
-	"Bellan",
-	"Bragato",
-	"Parenzo"
-];
-var charCity=[
-	"Pisa",
-	"Torino",
-	"Milano",
-	"Roma",
-	"Napoli",
-	"Palermo",
-	"Nizza"
-];
-var charSigle=[
-	"AL",
-	"TO",
-	"MI",
-	"RO",
-	"AO",
-	"CU",
-	"EB",
-	"AS",
-	"GE",
-	"VE"
-];
-var charGeneral=[
-	"casa",
-	"cane",
-	"pane",
-	"luce",
-	"more",
-	"fratello",
-	"sorella",
-	"muro",
-	"stereo",
-	"usb"
-];
-
 var charsetA="qazxswedcvfrtgbnhyujmkiolp";
 var charset0="0123456789";
 
@@ -110,7 +55,7 @@ function checkRange(){
 		colType.push(Type);
 	}
 	out+="<table>";
-	out+="N. valori:<input type='text' class='short' id='nVal' /><button id='next3' onClick='createT();'>createT</button><br/>";
+	out+="N&#176;Record:<input type='text' class='short' id='nVal' /><button id='next3' onClick='createT();'>createT</button><br/>";
 	fase2.innerHTML=out;
 }
 
