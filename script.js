@@ -103,6 +103,17 @@ function createT(){
 	}
 	fase3.innerHTML=out;
 }
+
+/*
+let charsetFunctionList = {
+	'index' : function(data){
+		var response = {};
+		response.page = 'index';
+		return response;
+	},
+};
+*/
+
 function randomString(n){
 	var out="";
 	if(isCharset(n)){
