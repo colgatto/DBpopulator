@@ -38,11 +38,10 @@ td > input{
 	<div id="content" class="wrapper">ciao</div>
 </div>
 <script>
-	document.getElementById('content').innerHTML = makeTbl([
+	document.getElementById('content').innerHTML += makeTbl([
 		['Table name','<input id="tableName" type="text" />'],
 		['N&#176; Columns','<input id="Ncolumn" type="number" />']
 	]);
-	
 /*
 		<button id="next1" onClick="checkNames();">NEXT</button><br/>
 		<div id="fase1"></div>
