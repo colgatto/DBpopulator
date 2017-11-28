@@ -52,3 +52,12 @@ var charGeneral=[
 	"stereo",
 	"usb"
 ];
+
+
+function makeTbl(elements){
+	return '<table>' + elements.reduce(function(all,el){
+		return all+'<tr>' + el.reduce(function(all,el){
+			return all+'<td>' + el + '</td>';
+		},'') + '</tr>';
+	},'') + '</table>';
+}
