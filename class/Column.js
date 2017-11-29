@@ -1,3 +1,73 @@
+class RowSet{
+	
+	constructor(tblId){
+		this.tblId = tblId;
+		this.list = [];
+	}
+	
+	add(type,position = null){
+		/*
+		if(position != null){
+			this.list=this.list((l,el,index) => {
+				if(index == position)
+					l.push(new Row(Math.floor(Math.random()*100000),type));
+				l.push(el);
+				return l;
+			},[]);
+		}
+		*/
+		
+		this.list.push(new Row(Math.floor(Math.random()*10000000),type));
+		this.render();
+	}
+	
+	render(){
+		console.log(this.list);
+		var tbl = document.getElementById(this.tblId);
+		
+		tbl.innerHTML = this.list.reduce((t,row) => {
+			return t += row.generate();
+		},"");
+		tbl.lastChild.lastChild.lastChild.innerHTML += "<button onclick=\"addRow();\">+</button>";
+		
+		var allTd = document.getElementsByClassName("attributeType");
+		for(var i=0,l=allTd.length-1; i<l; i++){
+			console.log("DDD");
+			allTd.item(i).firstChild.onchange = (event) => {
+				console.log(event.originalTarget);
+			};
+		}
+		
+	}
+}
+
+class Row{
+	constructor(id, type){
+		this.id = id;
+		this.column = {
+			"Int" : new Int(this.id,''),
+			"Float" : new Float(this.id,''),
+			"String" : new String(this.id,''),
+			"Date" : new Date(this.id,''),
+			"Null" :  new Column(this.id,'')
+		}[type];
+	}
+	
+	generate(){
+		return "<tr class=\"attributeInfo\">"
+			+ "<td class=\"attributeName\">"
+			+ "<input id=\"attributeName" + this.id + "\" type=\"text\" value=\"" + this.column.name + "\" /></td>"
+			+ "<td class=\"attributeType\"><select id=\"attributeType" + this.id + "\">"
+			+ "<option value=\"int\">Int</option>"
+			+ "<option value=\"float\">Float</option>"
+			+ "<option value=\"string\">String</option>"
+			+ "<option value=\"date\">Date</option>"
+			+ "<option value=\"null\">Null</option>"
+			+ "</select></td><td class=\"attributeRange\">" + this.column.range() + "</td>"
+			+ "<td class=\"attributeOption\"><button onclick=\"removeRow(" + this.id + ");\">-</button></td></tr>";
+	}
+}
+
 class Column{
 	
 	constructor(id,nome,setNull = false){
@@ -5,6 +75,7 @@ class Column{
 		this.nome = nome;
 		this.nullPercentage = 5;
 		this.setNull = setNull;
+		this.type = "Null";
 		this.value = "null";
 		this.decimalNumber = 2;
 	}
@@ -12,7 +83,7 @@ class Column{
 	range(){return "NULL";}
 	
 	generate(){
-		return this.setNull && this.randomInt(0,100) < this.nullPercentage) ? 
+		return this.setNull && (this.randomInt(0,100) < this.nullPercentage) ? 
 			"null" : "" + this.value;
 	}
 	
@@ -32,11 +103,12 @@ class Int extends Column{
 	
 	constructor(id,nome,setNull = false){
 		super(id,nome,setNull);
+		this.type = "Int";
 	}
 	
 	range(){
-	return "Min<input class='short' id='rMin" + this.id + "' tipe='number'/>"
-		+"Max<input class='short' id='rMax" + this.id + "' tipe='number'/>";
+	return "<label>Min:</label><input class='short' id='rMin" + this.id + "' tipe='number'/>"
+		+"<label>Max:</label><input class='short' id='rMax" + this.id + "' tipe='number'/>";
 	}
 	
 	setMin(value){
@@ -58,6 +130,7 @@ class Float extends Column{
 	
 	constructor(id,nome){
 		super(id,nome);
+		this.type = "Float";
 	}
 	
 	range(){
@@ -82,7 +155,8 @@ class String extends Column{
 	
 	constructor(id,nome){
 		super(id,nome);
-		this.customCharset={
+		this.type = "String";
+		this.customCharset = {
 			'charName' : [
 				'David',
 				'Marco',
@@ -133,7 +207,7 @@ class String extends Column{
 				'muro',
 				'stereo',
 				'usb'
-			];
+			]
 		}
 	}
 	
@@ -204,6 +278,7 @@ class Date extends Column{
 	
 	constructor(id,nome){
 		super(id,nome);
+		this.type = "Date";
 	}
 	
 	range(){

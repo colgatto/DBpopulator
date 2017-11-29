@@ -1,55 +1,78 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>DBpopulator</title>
-<script  type="text/javascript" src="config.js"></script>
-<script  type="text/javascript" src="class/Charset.js"></script>
-<style>
-*{
-margin: 0;
-padding: 0;
-}
-.short{
-	width: 50px;
-}
-.center{
-	text-align:center;
-}
-.wrapper{
-	width: 40%;
-	margin: 0 auto;
-	margin-top: 35px;
-}
-#next1{
-	width: 100%;
-	height: 24px;
-}
-table{
-	width: 100%;
-}
-td > input{
-	width: 100%;
-	margin-right: 2px;
-	height: 24px;
-}
-</style>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>DBpopulator</title>
+	<script  type="text/javascript" src="config.js"></script>
+	<script  type="text/javascript" src="class/Charset.js"></script>
+	<script  type="text/javascript" src="class/Column.js"></script>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.short{
+			width: 50px;
+		}
+		.center{
+			text-align: center;
+		}
+		.wrapper{
+			width: 60%;
+			margin: 0 auto;
+			margin-top: 35px;
+		}
+		#tblAttribute{
+			width: 100%;
+		}
+		#tblAttribute tr td{
+			background-color: #6a6a6a;
+			height: 33px;
+		}
+		.attributeName > input, 
+		.attributeType > select {
+			width: 100%;
+		}
+		.attributeName,
+		.attributeType,
+		.attributeRange {
+			padding: 0 10px;
+		}
+		.attributeOption {
+			padding: 0 3px;
+			text-align: center;
+		}
+		.attributeRange label {
+			margin-left: 2px;
+			margin-right: 8px;
+			
+		}
+		.attributeOption button {
+			width: 20px;
+		}
+	</style>
 </head>
 <body>
-	<div id="content" class="wrapper">ciao</div>
-</div>
+	<div id="content" class="wrapper">
+		<label id="lblTblName">Table name:</label><input id="tableName" type="text" />
+		<table id="tblAttribute">
+		</table>
+	</div>
 <script>
-	document.getElementById('content').innerHTML += makeTbl([
-		['Table name','<input id="tableName" type="text" />'],
-		['N&#176; Columns','<input id="Ncolumn" type="number" />']
-	]);
-/*
-		<button id="next1" onClick="checkNames();">NEXT</button><br/>
-		<div id="fase1"></div>
-		<div id="fase2"></div>
-		<div id="fase3"></div>
-*/
+	//var id=0;
+	var attributeSet = new RowSet("tblAttribute");
+	attributeSet.add("Int");
+	
+	function removeRow(id){
+		
+	}
+	
+	function addRow(){
+		attributeSet.add("Int");
+	}
 	
 </script>
-<script  type="text/javascript" src="script.js"></script>
+<!--script type="text/javascript" src="script.js"></script-->
 </body>
 </html>
